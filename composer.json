@@ -1,0 +1,52 @@
+{
+  "name": "construct-blue/snappy-application",
+  "description": "",
+  "homepage": "https://github.com/construct-blue/snappy-application",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Kleinschuster",
+      "email": "snappy@kleinschuster.de",
+      "homepage": "https://www.robs.social",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "construct-blue/snappy-renderer": "dev-main",
+    "league/route": "^5.1",
+    "league/event": "^3.0",
+    "league/uri": "^6.0",
+    "league/uri-components": "^2.4",
+    "league/container": "^4.2",
+    "league/config": "^1.2",
+    "laminas/laminas-diactoros": "^3.0",
+    "laminas/laminas-httphandlerrunner": "^2.6",
+    "league/fractal": "^0.20.1",
+    "league/monga": "^1.2",
+    "league/iso3166": "^4.2",
+    "psr/log": "^1.0",
+    "league/booboo": "^2.1",
+    "monolog/monolog": "^2.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "phpmd/phpmd": "^2.13",
+    "phpstan/phpstan": "^1.10"
+  },
+  "autoload": {
+    "psr-4": {
+      "SnappyApplication\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SnappyApplicationTest\\": "tests"
+    }
+  },
+  "scripts": {
+    "phpmd": "phpmd src ansi phpmd.xml",
+    "phpstan": "phpstan analyse -c phpstan.neon"
+  }
+}
