@@ -4,50 +4,110 @@ declare(strict_types=1);
 
 namespace SnappyApplication\Router;
 
-use League\Route\Route;
+use Closure;
+use League\Route\RouteCollectionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 
 class Router implements RequestHandlerInterface
 {
-    private \League\Route\Router $router;
+
+    private ErrorHandlerInterface $errorHandler;
+    /**
+     * @var RouteGroup[][]
+     */
+    private array $groups = [];
 
     public function __construct(ErrorHandlerInterface $errorHandler)
     {
-        $this->router = new \League\Route\Router();
-        $this->router->setStrategy(new ApplicationStrategy($errorHandler));
+        $this->errorHandler = $errorHandler;
     }
 
-    public function pipe(MiddlewareInterface $middleware): self
+    public function addGroup(RouteGroup $group): self
     {
-        $this->router->middleware($middleware);
+        $this->groups[$group->getHost()][] = $group;
         return $this;
     }
 
-    public function route(string $method, string $path, $handler): Route
+    private function resolveGroup(RouteGroup $group, RouteCollectionInterface $collection): void
     {
-        if ($handler instanceof RequestHandlerInterface) {
-            $handler = [$handler, 'handle'];
+        $group->resolve();
+        foreach ($group->getRoutes() as $route) {
+            $map = $collection->map(
+                $group->getMethod(),
+                $route->getPath(),
+                [$route->getHandler(), 'handle']
+            );
+            $map->middlewares($route->getMiddlewares());
+            $map->setName($route->getName());
+            if ($group->getHost() !== '*') {
+                $map->setHost($group->getHost());
+            }
         }
-
-        return $this->router->map($method, $path, $handler);
     }
 
-    public function GET(string $path, $handler): Route
+    /**
+     * @param RouteGroup[] $groups
+     * @return \League\Route\Router
+     */
+    private function createRouter(array $groups): \League\Route\Router
     {
-        return $this->route('GET', $path, $handler);
-    }
-
-    public function POST(string $path, $handler): Route
-    {
-        return $this->route('POST', $path, $handler);
+        $router = new \League\Route\Router();
+        $router->setStrategy(new ApplicationStrategy($this->errorHandler));
+        foreach ($groups as $group) {
+            $map = $router->group(
+                $group->getPath(),
+                fn(RouteCollectionInterface $collection) => $this->resolveGroup($group, $collection)
+            );
+            $map->middlewares($group->getMiddlewares());
+            if ($group->getHost() !== '*') {
+                $map->setHost($group->getHost());
+            }
+        }
+        return $router;
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->router->handle($request);
+        $host = $request->getUri()->getHost();
+
+        $groups = $this->groups['*'];
+        if (isset($this->groups[$host])) {
+            $groups = $this->groups[$host];
+        }
+
+        $router = $this->createRouter($groups);
+
+        return $router->handle(
+            $request->withAttribute(UriBuilder::class, new UriBuilder($router, $request->getUri()))
+        );
+    }
+
+    /**
+     * @param string $name
+     * @param string $path
+     * @param RequestHandlerInterface $handler
+     * @return void
+     */
+    public function route(string $name, string $path, RequestHandlerInterface $handler): void
+    {
+        $group = new RouteGroup('/');
+        $group->route($name, $path, $handler);
+        $this->addGroup($group);
+    }
+
+    public function host(string $host, Closure $callback): void
+    {
+        $group = new RouteGroup('/', $host);
+        $group->setCallback($callback);
+        $this->addGroup($group);
+    }
+
+    public function path(string $path, Closure $callback): void
+    {
+        $group = new RouteGroup($path);
+        $group->setCallback($callback);
     }
 }

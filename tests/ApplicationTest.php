@@ -12,6 +12,7 @@ use SnappyApplication\Application;
 use SnappyApplication\Emitter\ResponseEmitterInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 use SnappyApplication\Request\ServerRequestFactoryInterface;
+use SnappyApplication\Router\Handler\ClosureHandler;
 
 class ApplicationTest extends TestCase
 {
@@ -27,9 +28,10 @@ class ApplicationTest extends TestCase
             ->getMock();
 
         $request = $this->getMockBuilder(ServerRequestInterface::class)
-            ->onlyMethods(['getUri', 'getMethod'])
+            ->onlyMethods(['getUri', 'getMethod', 'withAttribute'])
             ->getMockForAbstractClass();
 
+        $request->method('withAttribute')->willReturn($request);
         $uri = $this->getMockBuilder(UriInterface::class)
             ->onlyMethods(['getPath'])
             ->getMockForAbstractClass();
@@ -50,7 +52,7 @@ class ApplicationTest extends TestCase
         $emitter->method('emit')->with($response);
 
         $app = new Application($emitter, $requestFactory, $errorHandler);
-        $app->route()->GET('/', fn() => $response);
+        $app->getRouter()->route('index', '/', new ClosureHandler(fn() => $response));
         $app->run();
     }
 }

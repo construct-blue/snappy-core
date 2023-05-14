@@ -13,7 +13,7 @@ use SnappyApplication\Emitter\ResponseEmitterInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 use SnappyApplication\Request\ServerRequestFactoryInterface;
 
-class Application
+final class Application
 {
     private RequestHandlerRunnerInterface $runner;
     private Router $router;
@@ -31,7 +31,7 @@ class Application
         );
     }
 
-    public function route(): Router
+    public function getRouter(): Router
     {
         return $this->router;
     }
