@@ -13,7 +13,7 @@ use SnappyApplication\Emitter\ResponseEmitterInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 use SnappyApplication\Request\ServerRequestFactoryInterface;
 
-final class Application
+final class Kernel
 {
     private RequestHandlerRunnerInterface $runner;
     private Router $router;

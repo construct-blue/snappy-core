@@ -6,13 +6,14 @@ namespace SnappyApplication\Router;
 
 use League\Route\Http\Exception\MethodNotAllowedException;
 use League\Route\Http\Exception\NotFoundException;
+use League\Route\Strategy\ApplicationStrategy;
 use Psr\Http\Server\MiddlewareInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 use SnappyApplication\Router\Middleware\ErrorHandlerMiddleware;
 use SnappyApplication\Router\Middleware\MethodNotAllowedMiddleware;
 use SnappyApplication\Router\Middleware\NotFoundMiddleware;
 
-class ApplicationStrategy extends \League\Route\Strategy\ApplicationStrategy
+class ErrorHandlerStrategy extends ApplicationStrategy
 {
     private ErrorHandlerInterface $errorHandler;
 

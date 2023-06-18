@@ -8,13 +8,13 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
-use SnappyApplication\Application;
+use SnappyApplication\Kernel;
 use SnappyApplication\Emitter\ResponseEmitterInterface;
 use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 use SnappyApplication\Request\ServerRequestFactoryInterface;
 use SnappyApplication\Router\Handler\ClosureHandler;
 
-class ApplicationTest extends TestCase
+class KernelTest extends TestCase
 {
     public function testShouldDispatchRequestsAndEmitResponse(): void
     {
@@ -51,7 +51,7 @@ class ApplicationTest extends TestCase
 
         $emitter->method('emit')->with($response);
 
-        $app = new Application($emitter, $requestFactory, $errorHandler);
+        $app = new Kernel($emitter, $requestFactory, $errorHandler);
         $app->getRouter()->route('index', '/', new ClosureHandler(fn() => $response));
         $app->run();
     }

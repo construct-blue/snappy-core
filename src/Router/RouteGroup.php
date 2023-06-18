@@ -7,6 +7,7 @@ namespace SnappyApplication\Router;
 use Closure;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
 
 final class RouteGroup
 {
@@ -26,25 +27,30 @@ final class RouteGroup
 
     private Closure $callback;
 
+    private ?ErrorHandlerInterface $errorHandler;
+
     /**
      * @param string $path
      * @param string $host
      * @param string $method
      * @param Route[] $routes
      * @param MiddlewareInterface[] $middlewares
+     * @param ErrorHandlerInterface|null $errorHandler
      */
     public function __construct(
         string $path,
         string $host = '*',
         string $method = 'GET',
         array $routes = [],
-        array $middlewares = []
+        array $middlewares = [],
+        ErrorHandlerInterface $errorHandler = null
     ) {
         $this->path = $path;
         $this->host = $host;
         $this->method = $method;
         $this->routes = $routes;
         $this->middlewares = $middlewares;
+        $this->errorHandler = $errorHandler;
     }
 
 
@@ -58,6 +64,16 @@ final class RouteGroup
     {
         $this->middlewares[] = $middleware;
         return $this;
+    }
+
+    public function getErrorHandler(): ?ErrorHandlerInterface
+    {
+        return $this->errorHandler;
+    }
+
+    public function setErrorHandler(?ErrorHandlerInterface $errorHandler): void
+    {
+        $this->errorHandler = $errorHandler;
     }
 
     /**

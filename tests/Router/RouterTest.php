@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Router;
 
+use Laminas\Diactoros\Response\JsonResponse;
 use Laminas\Diactoros\Response\TextResponse;
 use Laminas\Diactoros\Uri;
 use Psr\Http\Message\ResponseInterface;
@@ -35,6 +36,30 @@ class RouterTest extends TestCase
         $router = $this->createRouter($response);
 
         $this->assertSame($response, $router->handle($request));
+    }
+
+    public function testShouldUseDifferentErrorHandlerPerGroup(): void
+    {
+        $router = $this->createRouter();
+
+        $response = new JsonResponse(['text' => 'error']);
+
+        $errorHandler = $this->getMockBuilder(ErrorHandlerInterface::class)
+            ->onlyMethods(['handle'])
+            ->getMock();
+        $errorHandler->method('handle')->willReturn($response);
+
+        $router->host(
+            'www.json-error.com',
+            function (RouteGroup $group) {
+                $group->route('test1', '/', new ClosureHandler(fn() => new JsonResponse(['text' => 'hello'])));
+            },
+            $errorHandler
+        );
+
+        self::assertSame($response, $router->handle($this->createRequestMock('https://www.json-error.com/invalid')));
+
+        self::assertInstanceOf(TextResponse::class, $router->handle($this->createRequestMock('https://www.example.com/invalid')));
     }
 
 

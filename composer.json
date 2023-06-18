@@ -17,8 +17,6 @@
     "construct-blue/snappy-renderer": "dev-main",
     "league/route": "^5.1",
     "league/event": "^3.0",
-    "league/uri": "^6.0",
-    "league/uri-components": "^2.4",
     "league/container": "^4.2",
     "league/config": "^1.2",
     "laminas/laminas-diactoros": "^3.0",
@@ -26,8 +24,7 @@
     "league/fractal": "^0.20.1",
     "league/monga": "^1.2",
     "league/iso3166": "^4.2",
-    "psr/log": "^1.0",
-    "league/booboo": "^2.1",
+    "psr/log": "^3.0.0",
     "monolog/monolog": "^2.9"
   },
   "require-dev": {
