@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use Psr\Http\Message\ServerRequestInterface;
-use SnappyRenderer\Helper\Arguments;
 
-return fn(string $message, int $code, ?ServerRequestInterface $request, SnappyRenderer\Renderer $r) => <<<HTML
+return fn(string $message, int $code, ?ServerRequestInterface $request, Blue\Snappy\Renderer\Renderer $r) => <<<HTML
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +15,7 @@ return fn(string $message, int $code, ?ServerRequestInterface $request, SnappyRe
 </head>
 <body>
   <h1>$message</h1>
-  {$r->conditional(include 'RequestDetails.php', fn() => isset($request), new Arguments(['request' => $request]))}
+  {$r->conditional(include 'RequestDetails.php', fn() => isset($request), $r->args(['request' => $request]))}
 </body>
 </html>
 HTML;

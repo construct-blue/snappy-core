@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/construct-blue/snappy-renderer.git",
-                "reference": "f32ef92ce0c32ef5be837b31208bfb543d94972c"
+                "reference": "dfaf3ebe3cf92de4e72faede49d401471d705425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/f32ef92ce0c32ef5be837b31208bfb543d94972c",
-                "reference": "f32ef92ce0c32ef5be837b31208bfb543d94972c",
+                "url": "https://api.github.com/repos/construct-blue/snappy-renderer/zipball/dfaf3ebe3cf92de4e72faede49d401471d705425",
+                "reference": "dfaf3ebe3cf92de4e72faede49d401471d705425",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SnappyRenderer\\": "src"
+                    "Blue\\Snappy\\Renderer\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -52,7 +52,7 @@
             "support": {
                 "source": "https://github.com/construct-blue/snappy-renderer/tree/main"
             },
-            "time": "2023-05-10T04:47:51+00:00"
+            "time": "2023-06-18T10:01:48+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

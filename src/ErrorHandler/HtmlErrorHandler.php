@@ -8,9 +8,9 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use League\Route\Http\Exception\HttpExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use SnappyRenderer\Exception\RenderException;
-use SnappyRenderer\Helper\Arguments;
-use SnappyRenderer\Renderer;
+use Blue\Snappy\Renderer\Exception\RenderException;
+use Blue\Snappy\Renderer\Helper\Arguments;
+use Blue\Snappy\Renderer\Renderer;
 use Throwable;
 
 class HtmlErrorHandler implements ErrorHandlerInterface

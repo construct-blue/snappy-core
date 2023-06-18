@@ -8,7 +8,7 @@ use Exception;
 use League\Route\Http\Exception\NotFoundException;
 use Snappy\Core\ErrorHandler\HtmlErrorHandler;
 use PHPUnit\Framework\TestCase;
-use SnappyRenderer\Renderer;
+use Blue\Snappy\Renderer\Renderer;
 
 class HtmlErrorHandlerTest extends TestCase
 {
