@@ -1,7 +1,7 @@
 {
-  "name": "construct-blue/snappy-application",
+  "name": "construct-blue/snappy-core",
   "description": "",
-  "homepage": "https://github.com/construct-blue/snappy-application",
+  "homepage": "https://github.com/construct-blue/snappy-core",
   "type": "library",
   "license": "MIT",
   "authors": [
