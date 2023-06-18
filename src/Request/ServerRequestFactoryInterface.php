@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Request;
+namespace Blue\Snappy\Core\Request;
 
 interface ServerRequestFactoryInterface
 {

@@ -2,24 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core;
+namespace Blue\Snappy\Core;
 
 use Psr\Http\Server\RequestHandlerInterface;
-use Snappy\Core\Emitter\LaminasResponseEmitter;
-use Snappy\Core\Router\Router;
+use Blue\Snappy\Core\Emitter\LaminasResponseEmitter;
+use Blue\Snappy\Core\Emitter\SapiResponseEmitter;
+use Blue\Snappy\Core\ErrorHandler\HtmlErrorHandler;
+use Blue\Snappy\Core\ErrorHandler\JsonErrorHandler;
+use Blue\Snappy\Core\Request\SapiServerRequestFactory;
+use Blue\Snappy\Core\Router\Router;
 use Throwable;
 use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use Laminas\HttpHandlerRunner\RequestHandlerRunnerInterface;
-use Snappy\Core\Emitter\ResponseEmitterInterface;
-use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
-use Snappy\Core\Request\ServerRequestFactoryInterface;
+use Blue\Snappy\Core\Emitter\ResponseEmitterInterface;
+use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Blue\Snappy\Core\Request\ServerRequestFactoryInterface;
 
 final class Http
 {
     private RequestHandlerRunnerInterface $runner;
     private Router $router;
 
-    public function __construct(
+    private function __construct(
         ResponseEmitterInterface $emitter,
         ServerRequestFactoryInterface $requestFactory,
         ErrorHandlerInterface $errorHandler
@@ -117,5 +121,35 @@ final class Http
     public function run(): void
     {
         $this->runner->run();
+    }
+
+    public static function createApp(
+        ResponseEmitterInterface $emitter,
+        ServerRequestFactoryInterface $requestFactory,
+        ErrorHandlerInterface $errorHandler
+    ): Http {
+        return new Http($emitter, $requestFactory, $errorHandler);
+    }
+
+    public static function jsonApi(
+        ResponseEmitterInterface $emitter = null,
+        ServerRequestFactoryInterface $requestFactory = null
+    ): self {
+        return Http::createApp(
+            $emitter ?? new SapiResponseEmitter(),
+                $requestFactory ?? new SapiServerRequestFactory(),
+            new JsonErrorHandler()
+        );
+    }
+
+    public static function htmlApp(
+        ResponseEmitterInterface $emitter = null,
+        ServerRequestFactoryInterface $requestFactory = null
+    ): self {
+        return Http::createApp(
+            $emitter ?? new SapiResponseEmitter(),
+            $requestFactory ?? new SapiServerRequestFactory(),
+            new HtmlErrorHandler()
+        );
     }
 }

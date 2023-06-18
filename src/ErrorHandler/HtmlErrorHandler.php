@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\ErrorHandler;
+namespace Blue\Snappy\Core\ErrorHandler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
 use League\Route\Http\Exception\HttpExceptionInterface;

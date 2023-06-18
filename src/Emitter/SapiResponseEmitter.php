@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Emitter;
+namespace Blue\Snappy\Core\Emitter;
 
 use Laminas\HttpHandlerRunner\Emitter\EmitterInterface;
 use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Router;
+namespace Blue\Snappy\Core\Router;
 
 use League\Route\Http\Exception\MethodNotAllowedException;
 use League\Route\Http\Exception\NotFoundException;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Http\Server\MiddlewareInterface;
-use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
-use Snappy\Core\Router\Middleware\ErrorHandlerMiddleware;
-use Snappy\Core\Router\Middleware\MethodNotAllowedMiddleware;
-use Snappy\Core\Router\Middleware\NotFoundMiddleware;
+use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Blue\Snappy\Core\Router\Middleware\ErrorHandlerMiddleware;
+use Blue\Snappy\Core\Router\Middleware\MethodNotAllowedMiddleware;
+use Blue\Snappy\Core\Router\Middleware\NotFoundMiddleware;
 
 class ErrorHandlerStrategy extends ApplicationStrategy
 {

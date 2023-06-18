@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SnappyTest\Core\ErrorHandler;
+namespace BlueTest\Snappy\Core\ErrorHandler;
 
 use Exception;
 use League\Route\Http\Exception\NotFoundException;
-use Snappy\Core\ErrorHandler\HtmlErrorHandler;
+use Blue\Snappy\Core\ErrorHandler\HtmlErrorHandler;
 use PHPUnit\Framework\TestCase;
 use Blue\Snappy\Renderer\Renderer;
 

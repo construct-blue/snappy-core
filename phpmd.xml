@@ -9,7 +9,8 @@
     <rule ref="rulesets/cleancode.xml/ElseExpression" />
     <rule ref="rulesets/cleancode.xml/StaticAccess">
         <properties>
-            <property name="exceptions" value="\SnappyRenderer\Exception\RenderException" />
+            <property name="exceptions" value="\Blue\Snappy\Renderer\Exception\RenderException" />
+            <property name="exceptions" value="\Blue\Snappy\Core\Http" />
         </properties>
     </rule>
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity" />

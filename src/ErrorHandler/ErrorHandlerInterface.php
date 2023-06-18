@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\ErrorHandler;
+namespace Blue\Snappy\Core\ErrorHandler;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

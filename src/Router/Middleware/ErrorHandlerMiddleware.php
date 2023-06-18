@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Router\Middleware;
+namespace Blue\Snappy\Core\Router\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
 use Throwable;
 
 class ErrorHandlerMiddleware implements MiddlewareInterface

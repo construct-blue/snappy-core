@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Router\Exception;
+namespace Blue\Snappy\Core\Router\Exception;
 
 use Exception;
 

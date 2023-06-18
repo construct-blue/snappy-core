@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SnappyTest\Core;
+namespace BlueTest\Snappy\Core;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
-use Snappy\Core\Http;
-use Snappy\Core\Emitter\ResponseEmitterInterface;
-use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
-use Snappy\Core\Request\ServerRequestFactoryInterface;
+use Blue\Snappy\Core\Http;
+use Blue\Snappy\Core\Emitter\ResponseEmitterInterface;
+use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Blue\Snappy\Core\Request\ServerRequestFactoryInterface;
 
 class HttpTest extends TestCase
 {
@@ -50,7 +50,7 @@ class HttpTest extends TestCase
 
         $emitter->method('emit')->with($response);
 
-        $app = new Http($emitter, $requestFactory, $errorHandler);
+        $app = Http::createApp($emitter, $requestFactory, $errorHandler);
         $app->getRouter()->route('index', 'GET', '/', fn() => $response);
         $app->run();
     }

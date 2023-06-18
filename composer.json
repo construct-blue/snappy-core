@@ -34,12 +34,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Snappy\\Core\\": "src"
+      "Blue\\Snappy\\Core\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "SnappyTest\\Core\\": "tests"
+      "BlueTest\\Snappy\\Core\\": "tests"
     }
   },
   "scripts": {

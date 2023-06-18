@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Snappy\Core\Router;
+namespace Blue\Snappy\Core\Router;
 
 use League\Route\RouteConditionHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
 
 class Router implements RequestHandlerInterface
 {
