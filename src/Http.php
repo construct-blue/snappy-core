@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Blue\Snappy\Core;
 
+use Blue\Snappy\Renderer\Renderer;
 use Psr\Http\Server\RequestHandlerInterface;
 use Blue\Snappy\Core\Emitter\LaminasResponseEmitter;
 use Blue\Snappy\Core\Emitter\SapiResponseEmitter;
@@ -149,7 +150,7 @@ final class Http
         return Http::createApp(
             $emitter ?? new SapiResponseEmitter(),
             $requestFactory ?? new SapiServerRequestFactory(),
-            new HtmlErrorHandler()
+            new HtmlErrorHandler(new Renderer())
         );
     }
 }
