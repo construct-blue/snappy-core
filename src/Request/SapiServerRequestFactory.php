@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SnappyApplication\Request;
+namespace Snappy\Core\Request;
 
 use Laminas\Diactoros\ServerRequestFactory;
 use Psr\Http\Message\ServerRequestInterface;

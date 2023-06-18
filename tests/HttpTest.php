@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SnappyApplicationTest;
+namespace SnappyTest\Core;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
-use SnappyApplication\Kernel;
-use SnappyApplication\Emitter\ResponseEmitterInterface;
-use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
-use SnappyApplication\Request\ServerRequestFactoryInterface;
-use SnappyApplication\Router\Handler\ClosureHandler;
+use Snappy\Core\Http;
+use Snappy\Core\Emitter\ResponseEmitterInterface;
+use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Snappy\Core\Request\ServerRequestFactoryInterface;
 
-class KernelTest extends TestCase
+class HttpTest extends TestCase
 {
     public function testShouldDispatchRequestsAndEmitResponse(): void
     {
@@ -51,8 +50,8 @@ class KernelTest extends TestCase
 
         $emitter->method('emit')->with($response);
 
-        $app = new Kernel($emitter, $requestFactory, $errorHandler);
-        $app->getRouter()->route('index', '/', new ClosureHandler(fn() => $response));
+        $app = new Http($emitter, $requestFactory, $errorHandler);
+        $app->getRouter()->route('index', 'GET', '/', fn() => $response);
         $app->run();
     }
 }

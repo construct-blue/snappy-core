@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SnappyApplication\ErrorHandler;
+namespace Snappy\Core\ErrorHandler;
 
 use Laminas\Diactoros\Response;
 use Laminas\Diactoros\Response\JsonResponse;

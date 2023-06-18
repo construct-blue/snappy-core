@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SnappyApplication\Router;
+namespace Snappy\Core\Router;
 
 use Psr\Http\Message\UriInterface;
-use SnappyApplication\Router\Exception\UriBuilderException;
+use Snappy\Core\Router\Exception\UriBuilderException;
 
 final class UriBuilder
 {

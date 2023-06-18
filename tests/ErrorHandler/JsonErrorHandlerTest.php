@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ErrorHandler;
+namespace SnappyTest\Core\ErrorHandler;
 
 use Exception;
 use Laminas\Diactoros\Response;
 use League\Route\Http\Exception\NotFoundException;
-use SnappyApplication\ErrorHandler\JsonErrorHandler;
+use Snappy\Core\ErrorHandler\JsonErrorHandler;
 use PHPUnit\Framework\TestCase;
 
 class JsonErrorHandlerTest extends TestCase

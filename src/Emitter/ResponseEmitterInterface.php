@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SnappyApplication\Emitter;
+namespace Snappy\Core\Emitter;
 
 use Psr\Http\Message\ResponseInterface;
 use Throwable;

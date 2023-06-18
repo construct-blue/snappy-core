@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Router\Middleware;
+namespace SnappyTest\Core\Router\Middleware;
 
 use Exception;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use SnappyApplication\ErrorHandler\ErrorHandlerInterface;
-use SnappyApplication\Router\Middleware\ErrorHandlerMiddleware;
+use Snappy\Core\ErrorHandler\ErrorHandlerInterface;
+use Snappy\Core\Router\Middleware\ErrorHandlerMiddleware;
 use PHPUnit\Framework\TestCase;
 
 class ErrorHandlerMiddlewareTest extends TestCase

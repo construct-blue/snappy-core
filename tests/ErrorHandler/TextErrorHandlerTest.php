@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ErrorHandler;
+namespace SnappyTest\Core\ErrorHandler;
 
 use Exception;
 use League\Route\Http\Exception\NotFoundException;
-use SnappyApplication\ErrorHandler\TextErrorHandler;
+use Snappy\Core\ErrorHandler\TextErrorHandler;
 use PHPUnit\Framework\TestCase;
 
 class TextErrorHandlerTest extends TestCase

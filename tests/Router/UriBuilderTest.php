@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Router;
+namespace SnappyTest\Core\Router;
 
 use Laminas\Diactoros\Response\TextResponse;
 use Laminas\Diactoros\Uri;
 use League\Route\Router;
 use PHPUnit\Framework\TestCase;
-use SnappyApplication\Router\UriBuilder;
+use Snappy\Core\Router\UriBuilder;
 
 class UriBuilderTest extends TestCase
 {
