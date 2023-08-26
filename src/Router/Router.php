@@ -7,6 +7,7 @@ namespace Blue\Snappy\Core\Router;
 use League\Route\RouteConditionHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Blue\Snappy\Core\ErrorHandler\ErrorHandlerInterface;
 
@@ -33,6 +34,11 @@ class Router implements RequestHandlerInterface
             $handler = [$handler, 'handle'];
         }
         return $this->router->map(strtoupper($method), $path, $handler)->setName($name);
+    }
+
+    public function middleware(MiddlewareInterface $middleware): void
+    {
+        $this->router->middleware($middleware);
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface

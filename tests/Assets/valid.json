@@ -1,0 +1,62 @@
+{
+  "entrypoints": {
+    "main": {
+      "assets": {
+        "js": [
+          {
+            "src": "/static/runtime.js",
+            "integrity": "sha256-hJXtl1GEJxeeLFLRl1A/Qco1StEAk4GbAMldNIv7T/c= sha384-fWDOT3uRUxiijjGETRsL34v2P56oohanbzQgXMizie8nUi7YeaZzporHrVFDVwAI sha512-TLM2hfr78LFbIHruMgAFaKelk7m5cfn7xrh/LcVi+nCJPcA+yPqkLXs2DR/U+/SD+NRPfPO+fuYawIMg9QZG2g=="
+          },
+          {
+            "src": "/static/vendors.js",
+            "integrity": "sha256-59DEjZ0oBll0CceCdqv3TnENKsw+0KFl9yO+aCIJbhE= sha384-YTVidB1bJA4VrYVxx2dOZIZ4odVYkT6Sdo4C+YRqNWO22FBJEYYrq5cxKe+3j7BH sha512-TUXk62xw5a+0y+e2lPUFc/yIT4EcGa+eCv6Yt0WbqPIX7b/h/GI2Dt5X8xMVIK9EEHIX2X4G3J6C881JutbCKg=="
+          },
+          {
+            "src": "/static/main.js",
+            "integrity": "sha256-uAKO94Y1lJiBlcN5nTotZiVlInOw64lWyc45PoGDQMc= sha384-EAG79jRpRN2q+r2up+v3Xqs0z+eGK0f6V4+F6hCxeegDCGEL4vwfSuDXYGLow/r+ sha512-Gl4HzAtGLGYCeNdDXYISY/fsZMRqOtwMVEeV77KIsOhXorjMbmX38ycPu7J0Q9/VGnSEKdR/0EHmOs75M13b/Q=="
+          }
+        ]
+      }
+    }
+  },
+  "main.js.map": {
+    "src": "/static/main.js.map",
+    "integrity": "sha256-jmK++hF6VD4LZ9Bjc6g72AKq+rvZGWFO+6SmQy0xPYo= sha384-KqD4vTzWBJFdRNXjiCH0rt+yIF0C8NQR4vsgEUtHtFM2fv3JfYf8b5/O+Uax8IsT sha512-1jwYzZBhZSmn85DCOtCBBsd8h14ncMT2G2J0jG1c0hb1BeDRALKzr++N832NOG6JT3GDRKb3jtRBuUS1b6QKMw=="
+  },
+  "main.js": {
+    "src": "/static/main.js",
+    "integrity": "sha256-uAKO94Y1lJiBlcN5nTotZiVlInOw64lWyc45PoGDQMc= sha384-EAG79jRpRN2q+r2up+v3Xqs0z+eGK0f6V4+F6hCxeegDCGEL4vwfSuDXYGLow/r+ sha512-Gl4HzAtGLGYCeNdDXYISY/fsZMRqOtwMVEeV77KIsOhXorjMbmX38ycPu7J0Q9/VGnSEKdR/0EHmOs75M13b/Q=="
+  },
+  "runtime.js.map": {
+    "src": "/static/runtime.js.map",
+    "integrity": "sha256-Ozl6YVwWdRpVYmYg3CpxEeBM881Iyrm6z0G7A+f5O9E= sha384-L1cxJNcwQ0DTjHVkECm1rI391Nxa+UrnTGjMCcOudYxebXuEhT5H9Ntvu1wbmCs2 sha512-TtXUgymYHV2fq2okeDY4iQuy/Ya/Zgy64Mg06VCQJiLI7UwmB8EqcSbP3wE44cjW4YT/HXr9SUBdZZqgESvSog=="
+  },
+  "runtime.js": {
+    "src": "/static/runtime.js",
+    "integrity": "sha256-hJXtl1GEJxeeLFLRl1A/Qco1StEAk4GbAMldNIv7T/c= sha384-fWDOT3uRUxiijjGETRsL34v2P56oohanbzQgXMizie8nUi7YeaZzporHrVFDVwAI sha512-TLM2hfr78LFbIHruMgAFaKelk7m5cfn7xrh/LcVi+nCJPcA+yPqkLXs2DR/U+/SD+NRPfPO+fuYawIMg9QZG2g=="
+  },
+  "service-worker.js": {
+    "src": "/static/service-worker.js",
+    "integrity": "sha256-zSFoA8LWynCU00azwFpjepG/lZqn0FJn8iSCoOd5nlo= sha384-lvqeyzkGeCQ0E9/sj7ppzJy5JIkGYhOp6NUKwL067IhBEo9r72IzxP0j5XTpX+4U sha512-U2kfMrZmc0PUc5P+E98Q53bwzIO7TSjTZbGV3i7ASMbIupDlNJ1fsLN7eXsnQiwQ3ehL/sdRepQxqyjfgD5sWQ=="
+  },
+  "service-worker.js.map": {
+    "src": "/static/service-worker.js.map",
+    "integrity": "sha256-xlGW2zsAW3kEfeBJt4SJRPXT6P8O1J+ZWOYMZ4la+xM= sha384-VGw9q736t76zOIg5l1QRF4sS9RmluVptB4QCAoktP706CrFecEr53caIE4JkJ10x sha512-4fgoZMiOOhAu0QYuKM7EdkWnDf4LTgfOKhwFxTM/4scOGwogWq+8T9JECPHLu4oGAZ7hLEQnzIXQlgAQ/LlRPQ=="
+  },
+  "vendors.js": {
+    "src": "/static/vendors.js",
+    "integrity": "sha256-59DEjZ0oBll0CceCdqv3TnENKsw+0KFl9yO+aCIJbhE= sha384-YTVidB1bJA4VrYVxx2dOZIZ4odVYkT6Sdo4C+YRqNWO22FBJEYYrq5cxKe+3j7BH sha512-TUXk62xw5a+0y+e2lPUFc/yIT4EcGa+eCv6Yt0WbqPIX7b/h/GI2Dt5X8xMVIK9EEHIX2X4G3J6C881JutbCKg=="
+  },
+  "vendors.js.map": {
+    "src": "/static/vendors.js.map",
+    "integrity": "sha256-LQJ+fHXtIEJIGyjin69ms3NqnzA4e+ANaFbYufR1IE8= sha384-7jV40xZLivvR9P3o5+vMZBWVTbERweLSPuhlmVufJmkUkysyUqodCsummbMAT8Tk sha512-uC5C4RpmaSWH3d3WA5GketRL7aXT8cGgjI72WDvK5FpZbi93BoW6GgIjm7QrPR2CEQXjbzoHr4TqXZpQM/QmPQ=="
+  },
+  "workbox.js": {
+    "src": "/static/workbox.js",
+    "integrity": "sha256-CJnWBjgVGsSQibcUppmdBgLUGIWIbn7DmGPLVcJW+Qg= sha384-tgskYz4ojODPw4izayZp6qaaX8hq+5HXMxS0L/b2entfJeeoISoA4Gj669t+TGvA sha512-Pxp9NhjwtFfbsfG9CveRcq8m+93ZKhhK466bRuIJPhEbwnITUHydVHbX5xLOjTbqn1hPbn+mDEcHozUlSoeojQ=="
+  },
+  "workbox.js.map": {
+    "src": "/static/workbox.js.map",
+    "integrity": "sha256-SIzPhfG9+qY+R7cKF5jr+eEmCPNCN8HMxAotfnavDYs= sha384-VRVP6fy4XANax0eP8efMKOGMFq8so/6A8GIIFeNrqztJYt80pAXSIYxDQ+lymYSJ sha512-tIqIlbv/HTeb4G0we/NA5pmro3ACOPn5Q+ul+HYThVxnZk3wZc9qTwtTnHi7AZ3prdtNOJm+Gas9oUGN6dzYhA=="
+  }
+}

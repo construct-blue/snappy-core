@@ -57,4 +57,11 @@ final class UriBuilder
 
         return $uri;
     }
+
+    public function __debugInfo(): ?array
+    {
+        return [
+            'baseUri' => (string)$this->baseUri
+        ];
+    }
 }

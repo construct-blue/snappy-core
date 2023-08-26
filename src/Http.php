@@ -4,7 +4,15 @@ declare(strict_types=1);
 
 namespace Blue\Snappy\Core;
 
+use Blue\Snappy\Core\Assets\AssetsLoader;
+use Blue\Snappy\Core\Assets\AssetsLoaderMiddleware;
+use Blue\Snappy\Core\Environment\Environemnt;
+use Blue\Snappy\Core\Environment\EnvironmentMiddleware;
 use Blue\Snappy\Renderer\Renderer;
+use Exception;
+use League\Route\Http\Exception\BadRequestException;
+use League\Route\Http\Exception\NotFoundException;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Blue\Snappy\Core\Emitter\LaminasResponseEmitter;
 use Blue\Snappy\Core\Emitter\SapiResponseEmitter;
@@ -23,18 +31,23 @@ final class Http
 {
     private RequestHandlerRunnerInterface $runner;
     private Router $router;
+    private Environemnt $environemnt;
+
+    private bool $running = false;
 
     private function __construct(
         ResponseEmitterInterface $emitter,
         ServerRequestFactoryInterface $requestFactory,
         ErrorHandlerInterface $errorHandler
     ) {
+        $this->environemnt = new Environemnt();
         $this->runner = new RequestHandlerRunner(
             $this->router = new Router($errorHandler),
             new LaminasResponseEmitter($emitter),
             fn() => $requestFactory->create(),
             fn(Throwable $throwable) => $errorHandler->handle($throwable)
         );
+        $this->addMiddleware(new EnvironmentMiddleware($this->environemnt));
     }
 
     public function getRouter(): Router
@@ -119,9 +132,28 @@ final class Http
         $this->getRouter()->route($name, 'delete', $path, $handler);
     }
 
+    public function addMiddleware(MiddlewareInterface $middleware): void
+    {
+        $this->router->middleware($middleware);
+    }
+
     public function run(): void
     {
+        chdir($this->environemnt->getDirectory());
+        $this->running = true;
         $this->runner->run();
+    }
+
+    public function __destruct()
+    {
+        if (!$this->running) {
+            $this->run();
+        }
+    }
+
+    public function initAssets(string $assetsManifest = 'assets-manifest.json'): void
+    {
+        $this->addMiddleware(new AssetsLoaderMiddleware(new AssetsLoader($assetsManifest)));
     }
 
     public static function createApp(
@@ -138,7 +170,7 @@ final class Http
     ): self {
         return Http::createApp(
             $emitter ?? new SapiResponseEmitter(),
-                $requestFactory ?? new SapiServerRequestFactory(),
+            $requestFactory ?? new SapiServerRequestFactory(),
             new JsonErrorHandler()
         );
     }
@@ -152,5 +184,29 @@ final class Http
             $requestFactory ?? new SapiServerRequestFactory(),
             new HtmlErrorHandler(new Renderer())
         );
+    }
+
+    /**
+     * @param string $message
+     * @param Exception|null $previous
+     * @param int $code
+     * @return never
+     * @throws BadRequestException
+     */
+    public static function throwBadRequest(string $message, ?Exception $previous = null, int $code = 0): never
+    {
+        throw new BadRequestException($message, $previous, $code);
+    }
+
+    /**
+     * @param string $message
+     * @param Exception|null $previous
+     * @param int $code
+     * @return never
+     * @throws NotFoundException
+     */
+    public static function throwNotFound(string $message, ?Exception $previous = null, int $code = 0): never
+    {
+        throw new NotFoundException($message, $previous, $code);
     }
 }
