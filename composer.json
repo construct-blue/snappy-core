@@ -1,5 +1,17 @@
 {
   "name": "construct-blue/snappy-core",
+  "description": "",
+  "homepage": "https://github.com/construct-blue/snappy-core",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Kleinschuster",
+      "email": "snappy@kleinschuster.de",
+      "homepage": "https://www.robs.social",
+      "role": "Developer"
+    }
+  ],
   "require": {
     "php": "^8.2",
     "ext-json": "*",
